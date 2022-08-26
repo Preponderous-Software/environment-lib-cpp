@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include "environment.cpp"
 
 bool debugFlag = true;
 
@@ -20,7 +21,10 @@ void debug(std::string message) {
 }
 
 int main() {
-    std::string toPrint = "Hello World!";
-    log(toPrint);
+    log("Creating environment.");
+    Environment environment = Environment();
+
+    log("Printing environment information.");
+    environment.printInfo();
     return 0;
 }
