@@ -27,5 +27,10 @@ void debug(std::string message) {
 int main() {
     Entity entity(-1, "Daniel");
     std::cout << "An entity with the name '" << entity.getName() << "' was created." << std::endl;
+
+    Environment environment(-1, "Earth", 4);
+    std::cout << "An environment with the name '" << environment.getName() << "' was created." << std::endl;
+
+    environment.printInfo();
     return 0;
 }

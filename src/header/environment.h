@@ -15,7 +15,7 @@ namespace envlibcpp {
             int getId();
             std::string getName();
             Grid getGrid();
-            void setName(std::string);
+            void setName(std::string newName);
             void addEntity(Entity entity);
             void addEntityToLocation(Entity entity, Location location);
             void removeEntity(Entity entity);

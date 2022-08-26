@@ -12,6 +12,7 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Grid {
         public:
+            Grid();
             Grid(int gridId, int gridSize);
             int getId();
             std::vector<Location> getLocations();
@@ -23,6 +24,8 @@ namespace envlibcpp {
             void addLocation(Location location);
             void removeLocation(Location location);
             void addEntity(Entity entity);
+            void addEntityToLocation(Entity entity, Location location);
+            void removeEntity(Entity entity);
             bool isEntityPresent(Entity entity);
             Location getLocation(int locationId);
             Location getUp(Location location);

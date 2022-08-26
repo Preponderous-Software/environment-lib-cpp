@@ -12,7 +12,7 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Location {
         public:
-            Location(int locId, int x, int y);
+            Location(int locId, int xpos, int ypos);
             int getId();
             int getX();
             int getY();
