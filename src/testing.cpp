@@ -1,6 +1,10 @@
 #include <string>
 #include <iostream>
-#include "environment.cpp"
+
+#include "header/entity.h"
+#include "header/environment.h"
+
+using namespace envlibcpp;
 
 bool debugFlag = true;
 
@@ -21,10 +25,7 @@ void debug(std::string message) {
 }
 
 int main() {
-    log("Creating environment.");
-    Environment environment = Environment();
-
-    log("Printing environment information.");
-    environment.printInfo();
+    Entity entity(-1, "Daniel");
+    std::cout << "An entity with the name '" << entity.getName() << "' was created." << std::endl;
     return 0;
 }
