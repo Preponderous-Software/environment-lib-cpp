@@ -31,9 +31,10 @@ int main() {
     Environment environment(-1, "Earth", 4);
     std::cout << "An environment with the name '" << environment.getName() << "' was created." << std::endl;
 
-    environment.printInfo();
-
     environment.addEntity(entity);
     std::cout << "Placed " << entity.getName() << " into " << environment.getName() + "." << std::endl;
+    
+    environment.printInfo();
+    
     return 0;
 }

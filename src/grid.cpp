@@ -64,6 +64,7 @@ namespace envlibcpp {
     }
 
     void Grid::addEntity(Entity entity) {
+        entity.setGridId(id);
         getFirstLocation().addEntity(entity);
     }
 
