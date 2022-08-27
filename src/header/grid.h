@@ -13,7 +13,7 @@ namespace envlibcpp {
     class Grid {
         public:
             Grid();
-            Grid(int gridId, int gridSize);
+            Grid(int gridSize);
             int getId();
             std::vector<Location> getLocations();
             Location getFirstLocation();

@@ -11,7 +11,7 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Environment {
         public:
-            Environment(int envId, std::string envName, int size);
+            Environment(std::string envName, int size);
             int getId();
             std::string getName();
             Grid getGrid();

@@ -5,12 +5,12 @@
 namespace envlibcpp {
     Grid::Grid() {
         // not recommended for use
-        id = -1;
+        id = rand() % 100 + 1;
         size = 4;
     }
 
-    Grid::Grid(int gridId, int gridSize) {
-        id = gridId;
+    Grid::Grid(int gridSize) {
+        id = rand() % 100 + 1;
         size = gridSize;
         generateLocations();
     }
@@ -110,7 +110,7 @@ namespace envlibcpp {
     void Grid::generateLocations() {
         for (int y = 0; y < getSize(); y++) {
             for (int x = 0; x < getSize(); x++) {
-                Location location(-1, x, y);
+                Location location(x, y);
                 locations.push_back(location);
             }
         }

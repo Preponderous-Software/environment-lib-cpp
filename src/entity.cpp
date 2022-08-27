@@ -3,8 +3,8 @@
 #include <string>
 
 namespace envlibcpp {
-    Entity::Entity(int entityId, std::string entityName) {
-        id = entityId;
+    Entity::Entity(std::string entityName) {
+        id = rand() % 100 + 1;
         name = entityName;
         environmentId = -1;
         gridId = -1;

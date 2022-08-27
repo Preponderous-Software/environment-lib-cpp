@@ -3,8 +3,8 @@
 #include <iostream>
 
 namespace envlibcpp {
-    Location::Location(int locId, int xpos, int ypos) {
-        id = id;
+    Location::Location(int xpos, int ypos) {
+        id = rand() % 100 + 1;
         x = xpos;
         y = ypos;
 

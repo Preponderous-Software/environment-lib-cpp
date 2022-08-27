@@ -9,7 +9,7 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Entity {
         public:
-            Entity(int entityId, std::string entityName);
+            Entity(std::string entityName);
             int getId();
             std::string getName();
             int getEnvironmentId();

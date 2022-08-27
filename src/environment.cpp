@@ -1,10 +1,10 @@
 #include "header/environment.h"
 
 namespace envlibcpp {
-    Environment::Environment(int envId, std::string envName, int size) {
-        id = envId;
+    Environment::Environment(std::string envName, int size) {
+        id = rand() % 100 + 1;
         name = envName;
-        grid = Grid(-1, size);
+        grid = Grid(size);
     }
 
     int Environment::getId() {
