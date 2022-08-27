@@ -1,7 +1,8 @@
-rm ./testing
+# remove executable
+rm ./tests
 
 # compile
 make
 
-# run
-./testing
+# run executable
+./tests
