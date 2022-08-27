@@ -1,3 +1,5 @@
+rm ./testing
+
 # compile
 make
 

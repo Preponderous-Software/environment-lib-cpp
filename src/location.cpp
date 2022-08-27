@@ -1,5 +1,7 @@
 #include "header/location.h"
 
+#include <iostream>
+
 namespace envlibcpp {
     Location::Location(int locId, int xpos, int ypos) {
         id = id;
@@ -25,12 +27,16 @@ namespace envlibcpp {
     }
     
     void Location::addEntity(Entity entity) {
+        entity.setLocationId(getId());
         entities.push_back(entity);
     }
     
     void Location::removeEntity(Entity entity) {
-        // TODO: implement
-        std::cout << "Warning: method unimplemented" << std::endl;
+        for (auto i = entities.begin(); i != entities.end(); i++) {
+            if ((*i).getId() == entity.getId()) {
+                entities.erase(i);
+            }
+        }
     }
     
     bool Location::isEntityPresent(Entity entity) {
