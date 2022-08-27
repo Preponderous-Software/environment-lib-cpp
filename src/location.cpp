@@ -9,35 +9,41 @@ namespace envlibcpp {
     }
 
     int Location::getId() {
-        // TODO: implement
+        return id;
     }
 
     int Location::getX() {
-        // TODO: implement
+        return x;
     }
     
     int Location::getY() {
-        // TODO: implement
+        return y;
     }
     
     int Location::getNumEntities() {
-        // TODO: implement
+        return entities.size();
     }
     
     void Location::addEntity(Entity entity) {
-        // TODO: implement
+        entities.push_back(entity);
     }
     
     void Location::removeEntity(Entity entity) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
     
     bool Location::isEntityPresent(Entity entity) {
-        // TODO: implement
+        for (Entity e : entities) {
+            if (e.getId() == entity.getId()) {
+                return true;
+            }
+        }
+        return false;
     }
     
     std::vector<Entity> Location::getEntities() {
-        // TODO: implement
+        return entities;
     }
     
 }

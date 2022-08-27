@@ -11,7 +11,7 @@ namespace envlibcpp {
         locationId = -1;
     }
 
-    int Entity::getID() {
+    int Entity::getId() {
         return id;
     }
 

@@ -10,7 +10,7 @@ namespace envlibcpp {
     class Entity {
         public:
             Entity(int entityId, std::string entityName);
-            int getID();
+            int getId();
             std::string getName();
             int getEnvironmentId();
             int getGridId();

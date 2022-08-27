@@ -3,6 +3,7 @@
 namespace envlibcpp {
     Grid::Grid() {
         // unused
+        std::cout << "Warning: default constructor used" << std::endl;
     }
 
     Grid::Grid(int gridId, int gridSize) {
@@ -12,78 +13,118 @@ namespace envlibcpp {
     }
 
     int Grid::getId() {
-        // TODO: implement
+        return id;
     }
 
     std::vector<Location> Grid::getLocations() {
-        // TODO: implement
+        return locations;
     }
 
     Location Grid::getFirstLocation() {
-        // TODO: implement
+        return locations[0];
+    }
+
+    Location Grid::getLocationByCoordinates(int x, int y) {
+        for (Location location : locations) {
+            if (location.getX() == x && location.getY() == y) {
+                return location;
+            }
+        }
+        // TODO: return null or something?
+        std::cout << "Warning: location not found" << std::endl;
     }
 
     int Grid::getSize() {
-        // TODO: implement
+        return size;
     }
 
     int Grid::getNumEntities() {
-        // TODO: implement
+        int count = 0;
+        for (Location location : locations) {
+            count += location.getNumEntities();
+        }
+        return count;
     }
 
     void Grid::setId(int newId) {
-        // TODO: implement
+        id = newId;
     }
 
     void Grid::setSize(int newSize) {
-        // TODO: implement
+        size = newSize;
     }
 
     void Grid::addLocation(Location location) {
-        // TODO: implement
+        locations.push_back(location);
     }
 
     void Grid::removeLocation(Location location) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
 
     void Grid::addEntity(Entity entity) {
-        // TODO: implement
+        getFirstLocation().addEntity(entity);
     }
 
     void Grid::addEntityToLocation(Entity entity, Location location) {
-        // TODO: implement
+        for (Location l : locations) {
+            if (l.getId() == location.getId()) {
+                location.addEntity(entity);
+            }
+        }
     }
 
     void Grid::removeEntity(Entity entity) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
 
     bool Grid::isEntityPresent(Entity entity) {
-        // TODO: implement
+        for (Location location : locations) {
+            if (location.isEntityPresent(entity)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     Location Grid::getLocation(int locationId) {
-        // TODO: implement
+        for (Location location : locations) {
+            if (location.getId() == locationId) {
+                return location;
+            }
+        }
+        // TODO: return null or something?
+        std::cout << "Warning: location not found" << std::endl;
     }
 
     Location Grid::getUp(Location location) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
 
     Location Grid::getRight(Location location) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
 
     Location Grid::getDown(Location location) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
     
     Location Grid::getLeft(Location location) {
         // TODO: implement
+        std::cout << "Warning: method unimplemented" << std::endl;
     }
     
     void Grid::generateLocations() {
-        // TODO: implement
+        for (int y = 0; y < getSize(); y++) {
+            for (int x = 0; x < getSize(); x++) {
+                Location location(-1, x, y);
+                locations.push_back(location);
+            }
+        }
     }
 }

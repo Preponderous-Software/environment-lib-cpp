@@ -17,6 +17,7 @@ namespace envlibcpp {
             int getId();
             std::vector<Location> getLocations();
             Location getFirstLocation();
+            Location getLocationByCoordinates(int x, int y);
             int getSize();
             int getNumEntities();
             void setId(int newId);
