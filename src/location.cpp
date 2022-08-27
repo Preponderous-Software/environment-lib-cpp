@@ -7,7 +7,6 @@ namespace envlibcpp {
         id = rand() % 100 + 1;
         x = xpos;
         y = ypos;
-
     }
 
     int Location::getId() {
@@ -27,6 +26,7 @@ namespace envlibcpp {
     }
     
     void Location::addEntity(Entity entity) {
+        std::cout << "Location::addEntity()" << std::endl;
         entity.setLocationId(getId());
         entities.push_back(entity);
     }
