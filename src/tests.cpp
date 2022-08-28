@@ -23,16 +23,10 @@ void testEntityPlacement() {
     std::cout << "Test - Entity Placement" << std::endl;
     Entity entity("Daniel");
     Environment environment("Earth", 2);
-    
-    Location firstLocation = environment.getGrid().getFirstLocation();
-    std::cout << "before placement the first location (" << firstLocation.getId() << ") has " << firstLocation.getNumEntities() << " entities." << std::endl;
 
     environment.addEntity(entity);
 
-    std::cout << "after placement the first location (" << firstLocation.getId() << ") has " << firstLocation.getNumEntities() << " entities." << std::endl;
-    int numEntities = environment.getNumEntities();
-    int expectedNumEntities = 1;
-    assert(numEntities == expectedNumEntities);
+    assert(environment.isEntityPresent(entity) == true);
     std::cout << "Success" << std::endl;
 }
 

@@ -4,9 +4,7 @@
 
 namespace envlibcpp {
     Grid::Grid() {
-        id = rand() % 100 + 1;
-        size = 4;
-        generateLocations();
+        Grid(4);
     }
 
     Grid::Grid(int gridSize) {
