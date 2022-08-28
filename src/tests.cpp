@@ -4,12 +4,25 @@
 
 #include "header/entity.h"
 #include "header/environment.h"
+#include "header/location.h"
 
 using namespace envlibcpp;
 
-void testGridGeneration() {
+void testPlacingEntityInLocation() {
     std::cout << "---" << std::endl;
-    std::cout << "Test - Grid Generation" << std::endl;
+    std::cout << "Test - Placing entity in location" << std::endl;
+    Entity entity("Daniel");
+    Location location(0, 0);
+
+    location.addEntity(entity);
+
+    assert(location.isEntityPresent(entity) == true);
+    std::cout << "Success" << std::endl;
+}
+
+void testGeneratingGrid() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Generating grid" << std::endl;
     int size = 4;
     Environment environment("test environment", 4);
     int numLocations = environment.getGrid().getLocations().size();
@@ -18,9 +31,30 @@ void testGridGeneration() {
     std::cout << "Success" << std::endl;
 }
 
-void testEntityPlacement() {
+void testRetrievingLocation() {
     std::cout << "---" << std::endl;
-    std::cout << "Test - Entity Placement" << std::endl;
+    std::cout << "Test - Retrieving location" << std::endl;
+    Grid grid(5);
+    Location firstLocation = grid.getFirstLocation();
+    assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
+    std::cout << "Success" << std::endl;
+}
+
+void testPlacingEntityInGrid() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Placing entity in grid" << std::endl;
+    Entity entity("Daniel");
+    Grid grid(4);
+
+    grid.addEntity(entity);
+
+    assert(grid.isEntityPresent(entity) == true);
+    std::cout << "Success" << std::endl;
+}
+
+void testPlacingEntityInEnvironment() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Placing entity in environment" << std::endl;
     Entity entity("Daniel");
     Environment environment("Earth", 2);
 
@@ -32,7 +66,10 @@ void testEntityPlacement() {
 
 int main() {
     srand (time (NULL));
-    testGridGeneration();
-    testEntityPlacement();
+    testPlacingEntityInLocation();
+    testGeneratingGrid();
+    testRetrievingLocation();
+    testPlacingEntityInGrid();
+    testPlacingEntityInEnvironment();
     return 0;
 }
