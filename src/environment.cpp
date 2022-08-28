@@ -1,5 +1,7 @@
 #include "header/environment.h"
 
+#include <iostream>
+
 namespace envlibcpp {
     Environment::Environment(std::string envName, int size) {
         id = rand() % 100 + 1;
@@ -24,6 +26,7 @@ namespace envlibcpp {
     }
 
     void Environment::addEntity(Entity entity) {
+        std::cout << "Environment::addEntity()" << std::endl;
         entity.setEnvironmentId(id);
         grid.addEntity(entity);
     }

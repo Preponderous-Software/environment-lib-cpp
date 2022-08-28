@@ -4,9 +4,7 @@
 
 namespace envlibcpp {
     Grid::Grid() {
-        id = rand() % 100 + 1;
-        size = 4;
-        generateLocations();
+        Grid(4);
     }
 
     Grid::Grid(int gridSize) {
@@ -24,6 +22,7 @@ namespace envlibcpp {
     }
 
     Location Grid::getFirstLocation() {
+        std::cout << "Grid::getFirstLocation()" << std::endl;
         return locations.front();
     }
 
@@ -69,8 +68,10 @@ namespace envlibcpp {
     }
 
     void Grid::addEntity(Entity entity) {
+        std::cout << "Grid::addEntity()" << std::endl;
         entity.setGridId(id);
-        getFirstLocation().addEntity(entity);
+        Location firstLocation = getFirstLocation();
+        firstLocation.addEntity(entity);
     }
 
     void Grid::addEntityToLocation(Entity entity, Location location) {

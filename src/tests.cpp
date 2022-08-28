@@ -12,7 +12,9 @@ void testGridGeneration() {
     std::cout << "Test - Grid Generation" << std::endl;
     int size = 4;
     Environment environment("test environment", 4);
-    assert(environment.getGrid().getLocations().size() == size*size);
+    int numLocations = environment.getGrid().getLocations().size();
+    int expectedNumLocations = size*size;
+    assert(numLocations == expectedNumLocations);
     std::cout << "Success" << std::endl;
 }
 
@@ -21,8 +23,10 @@ void testEntityPlacement() {
     std::cout << "Test - Entity Placement" << std::endl;
     Entity entity("Daniel");
     Environment environment("Earth", 2);
+
     environment.addEntity(entity);
-    assert(environment.getNumEntities() > 0);
+
+    assert(environment.isEntityPresent(entity) == true);
     std::cout << "Success" << std::endl;
 }
 
