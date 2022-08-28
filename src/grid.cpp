@@ -22,7 +22,6 @@ namespace envlibcpp {
     }
 
     Location Grid::getFirstLocation() {
-        std::cout << "Grid::getFirstLocation()" << std::endl;
         return locations.front();
     }
 
@@ -68,7 +67,6 @@ namespace envlibcpp {
     }
 
     void Grid::addEntity(Entity entity) {
-        std::cout << "Grid::addEntity()" << std::endl;
         entity.setGridId(id);
         Location firstLocation = getFirstLocation();
         firstLocation.addEntity(entity);

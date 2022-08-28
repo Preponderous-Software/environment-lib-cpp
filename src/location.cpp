@@ -26,7 +26,6 @@ namespace envlibcpp {
     }
     
     void Location::addEntity(Entity entity) {
-        std::cout << "Location::addEntity()" << std::endl;
         entity.setLocationId(getId());
         entities.push_back(entity);
     }

@@ -26,7 +26,6 @@ namespace envlibcpp {
     }
 
     void Environment::addEntity(Entity entity) {
-        std::cout << "Environment::addEntity()" << std::endl;
         entity.setEnvironmentId(id);
         grid.addEntity(entity);
     }
