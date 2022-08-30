@@ -22,13 +22,13 @@ namespace envlibcpp {
             int getNumEntities();
             void setId(int newId);
             void setSize(int newSize);
-            void addLocation(Location location);
-            void removeLocation(Location location);
-            void addEntity(Entity entity);
-            void addEntityToLocation(Entity entity, Location location);
-            void removeEntity(Entity entity);
-            bool isEntityPresent(Entity entity);
-            Location getLocation(int locationId);
+            void addLocation(Location* location);
+            void removeLocation(Location* location);
+            void addEntity(Entity* entity);
+            void addEntityToLocation(Entity* entity, Location* location);
+            void removeEntity(Entity* entity);
+            bool isEntityPresent(Entity* entity);
+            Location* getLocation(int locationId);
         private:
             int id;
             int size;

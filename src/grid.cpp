@@ -54,33 +54,33 @@ namespace envlibcpp {
         size = newSize;
     }
 
-    void Grid::addLocation(Location location) {
-        locations.push_back(location);
+    void Grid::addLocation(Location* location) {
+        locations.push_back(*location);
     }
 
-    void Grid::removeLocation(Location location) {
+    void Grid::removeLocation(Location* location) {
         for (auto i = locations.begin(); i != locations.end(); i++) {
-            if ((*i).getId() == location.getId()) {
+            if ((*i).getId() == location->getId()) {
                 locations.erase(i);
             }
         }
     }
 
-    void Grid::addEntity(Entity entity) {
-        entity.setGridId(id);
+    void Grid::addEntity(Entity* entity) {
+        entity->setGridId(id);
         Location firstLocation = getFirstLocation();
         firstLocation.addEntity(entity);
     }
 
-    void Grid::addEntityToLocation(Entity entity, Location location) {
+    void Grid::addEntityToLocation(Entity* entity, Location* location) {
         for (Location l : locations) {
-            if (l.getId() == location.getId()) {
-                location.addEntity(entity);
+            if (l.getId() == location->getId()) {
+                location->addEntity(entity);
             }
         }
     }
 
-    void Grid::removeEntity(Entity entity) {
+    void Grid::removeEntity(Entity* entity) {
         for (Location location : locations) {
             if (location.isEntityPresent(entity)) {
                 location.removeEntity(entity);
@@ -88,7 +88,7 @@ namespace envlibcpp {
         }
     }
 
-    bool Grid::isEntityPresent(Entity entity) {
+    bool Grid::isEntityPresent(Entity* entity) {
         for (Location location : locations) {
             if (location.isEntityPresent(entity)) {
                 return true;
@@ -97,10 +97,10 @@ namespace envlibcpp {
         return false;
     }
 
-    Location Grid::getLocation(int locationId) {
+    Location* Grid::getLocation(int locationId) {
         for (Location location : locations) {
             if (location.getId() == locationId) {
-                return location;
+                return &location;
             }
         }
         throw std::exception();
