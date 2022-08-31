@@ -17,10 +17,10 @@ namespace envlibcpp {
             int getX();
             int getY();
             int getNumEntities();
-            void addEntity(Entity entity);
-            void removeEntity(Entity entity);
-            bool isEntityPresent(Entity entity);
-            std::vector<Entity> getEntities();
+            void addEntity(Entity& entity);
+            void removeEntity(Entity& entity);
+            bool isEntityPresent(Entity& entity);
+            std::vector<Entity>& getEntities();
         private:
             int id;
             int x;

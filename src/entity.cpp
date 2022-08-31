@@ -37,12 +37,10 @@ namespace envlibcpp {
     }
 
     void Entity::setEnvironmentId(int id) {
-        std::cout << "Entity::setEnvironmentId()" << std::endl;
         environmentId = id;
     }
 
     void Entity::setGridId(int id) {
-        std::cout << "Entity::setGridId()" << std::endl;
         gridId = id;
     }
 

@@ -5,8 +5,17 @@
 #include "header/entity.h"
 #include "header/environment.h"
 #include "header/location.h"
+#include "header/grid.h"
 
 using namespace envlibcpp;
+
+void testTemplate() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Template" << std::endl;
+
+    assert(true);
+    std::cout << "Success" << std::endl;
+}
 
 void testPlacingEntityInLocation() {
     std::cout << "---" << std::endl;
@@ -40,6 +49,18 @@ void testRetrievingLocation() {
     std::cout << "Success" << std::endl;
 }
 
+void testRetrievingLocationAfterModification() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Retrieving location after modification" << std::endl;
+    Grid grid(5);
+    Location firstLocation = grid.getFirstLocation();
+    Entity entity = Entity("test");
+    firstLocation.addEntity(entity);
+    assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
+    assert(firstLocation.isEntityPresent(entity));
+    std::cout << "Success" << std::endl;
+}
+
 void testPlacingEntityInGrid() {
     std::cout << "---" << std::endl;
     std::cout << "Test - Placing entity in grid" << std::endl;
@@ -48,7 +69,7 @@ void testPlacingEntityInGrid() {
 
     grid.addEntity(entity);
 
-    assert(grid.isEntityPresent(entity) == true);
+    assert(grid.isEntityPresent(entity));
     std::cout << "Success" << std::endl;
 }
 
@@ -69,6 +90,7 @@ int main() {
     testPlacingEntityInLocation();
     testGeneratingGrid();
     testRetrievingLocation();
+    testRetrievingLocationAfterModification();
     testPlacingEntityInGrid();
     testPlacingEntityInEnvironment();
     return 0;
