@@ -118,6 +118,20 @@ void testRemovingEntityFromEnvironment() {
     std::cout << "Success" << std::endl;
 }
 
+void testPlacingMultipleEntities() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test 10 - Placing multiple entities" << std::endl;
+    Entity entity1("Bob");
+    Entity entity2("Phil");
+    Entity entity3("Clarisse");
+    Environment environment("Earth", 6);
+    environment.addEntity(entity1);
+    environment.addEntity(entity2);
+    environment.addEntity(entity3);
+    assert(environment.getNumEntities() == 3);
+    std::cout << "Success" << std::endl;
+}
+
 void seedRandomNumberGenerator() {
     srand (time (NULL));
 }
@@ -136,5 +150,6 @@ int main() {
     testRemovingEntityFromGrid();
     testPlacingEntityInEnvironment();
     testRemovingEntityFromEnvironment();
+    testPlacingMultipleEntities();
     return 0;
 }
