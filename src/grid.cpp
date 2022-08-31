@@ -17,16 +17,16 @@ namespace envlibcpp {
         return id;
     }
 
-    std::vector<Location> Grid::getLocations() {
+    std::vector<Location>& Grid::getLocations() {
         return locations;
     }
 
-    Location Grid::getFirstLocation() {
+    Location& Grid::getFirstLocation() {
         return locations.front();
     }
 
-    Location Grid::getLocationByCoordinates(int x, int y) {
-        for (Location location : locations) {
+    Location& Grid::getLocationByCoordinates(int x, int y) {
+        for (Location& location : locations) {
             if (location.getX() == x && location.getY() == y) {
                 return location;
             }
@@ -40,7 +40,7 @@ namespace envlibcpp {
 
     int Grid::getNumEntities() {
         int count = 0;
-        for (Location location : locations) {
+        for (Location& location : locations) {
             count = count + location.getNumEntities();
         }
         return count;
@@ -54,42 +54,42 @@ namespace envlibcpp {
         size = newSize;
     }
 
-    void Grid::addLocation(Location* location) {
-        locations.push_back(*location);
+    void Grid::addLocation(Location &location) {
+        locations.push_back(location);
     }
 
-    void Grid::removeLocation(Location* location) {
+    void Grid::removeLocation(Location &location) {
         for (auto i = locations.begin(); i != locations.end(); i++) {
-            if ((*i).getId() == location->getId()) {
+            if (i->getId() == location.getId()) {
                 locations.erase(i);
             }
         }
     }
 
-    void Grid::addEntity(Entity* entity) {
-        entity->setGridId(id);
-        Location firstLocation = getFirstLocation();
+    void Grid::addEntity(Entity &entity) {
+        entity.setGridId(id);
+        Location &firstLocation = getFirstLocation();
         firstLocation.addEntity(entity);
     }
 
-    void Grid::addEntityToLocation(Entity* entity, Location* location) {
-        for (Location l : locations) {
-            if (l.getId() == location->getId()) {
-                location->addEntity(entity);
+    void Grid::addEntityToLocation(Entity &entity, Location &location) {
+        for (Location &l : locations) {
+            if (l.getId() == location.getId()) {
+                location.addEntity(entity);
             }
         }
     }
 
-    void Grid::removeEntity(Entity* entity) {
-        for (Location location : locations) {
+    void Grid::removeEntity(Entity &entity) {
+        for (Location &location : locations) {
             if (location.isEntityPresent(entity)) {
                 location.removeEntity(entity);
             }
         }
     }
 
-    bool Grid::isEntityPresent(Entity* entity) {
-        for (Location location : locations) {
+    bool Grid::isEntityPresent(Entity &entity) {
+        for (Location &location : locations) {
             if (location.isEntityPresent(entity)) {
                 return true;
             }
@@ -97,10 +97,10 @@ namespace envlibcpp {
         return false;
     }
 
-    Location* Grid::getLocation(int locationId) {
-        for (Location location : locations) {
+    Location& Grid::getLocation(int locationId) {
+        for (Location &location : locations) {
             if (location.getId() == locationId) {
-                return &location;
+                return location;
             }
         }
         throw std::exception();

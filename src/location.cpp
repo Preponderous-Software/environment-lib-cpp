@@ -25,29 +25,29 @@ namespace envlibcpp {
         return entities.size();
     }
     
-    void Location::addEntity(Entity entity) {
+    void Location::addEntity(Entity &entity) {
         entity.setLocationId(getId());
         entities.push_back(entity);
     }
     
-    void Location::removeEntity(Entity* entity) {
+    void Location::removeEntity(Entity &entity) {
         for (auto i = entities.begin(); i != entities.end(); i++) {
-            if ((**i).getId() == (*entity).getId()) {
+            if (i->getId() == entity.getId()) {
                 entities.erase(i);
             }
         }
     }
     
-    bool Location::isEntityPresent(Entity* entity) {
-        for (Entity* e : entities) {
-            if (e->getId() == entity->getId()) {
+    bool Location::isEntityPresent(Entity &entity) {
+        for (Entity &e : entities) {
+            if (e.getId() == entity.getId()) {
                 return true;
             }
         }
         return false;
     }
     
-    std::vector<Entity*> Location::getEntities() {
+    std::vector<Entity>& Location::getEntities() {
         return entities;
     }
     

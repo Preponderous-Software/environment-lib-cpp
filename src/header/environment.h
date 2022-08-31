@@ -14,12 +14,12 @@ namespace envlibcpp {
             Environment(std::string envName, int size);
             int getId();
             std::string getName();
-            Grid getGrid();
+            Grid& getGrid();
             void setName(std::string newName);
-            void addEntity(Entity* entity);
-            void addEntityToLocation(Entity* entity, Location* location);
-            void removeEntity(Entity* entity);
-            bool isEntityPresent(Entity* entity);
+            void addEntity(Entity &entity);
+            void addEntityToLocation(Entity &entity, Location &location);
+            void removeEntity(Entity &entity);
+            bool isEntityPresent(Entity &rntity);
             int getNumEntities();
             void printInfo();
         private:

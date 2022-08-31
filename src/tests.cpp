@@ -9,9 +9,17 @@
 
 using namespace envlibcpp;
 
+void testTemplate() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Template" << std::endl;
+
+    assert(true);
+    std::cout << "Success" << std::endl;
+}
+
 void testPlacingEntityInLocation() {
     std::cout << "---" << std::endl;
-    std::cout << "Test 1 - Placing entity in location" << std::endl;
+    std::cout << "Test - Placing entity in location" << std::endl;
     Entity entity("Daniel");
     Location location(0, 0);
 
@@ -23,7 +31,7 @@ void testPlacingEntityInLocation() {
 
 void testGeneratingGrid() {
     std::cout << "---" << std::endl;
-    std::cout << "Test 2 - Generating grid" << std::endl;
+    std::cout << "Test - Generating grid" << std::endl;
     int size = 4;
     Environment environment("test environment", 4);
     int numLocations = environment.getGrid().getLocations().size();
@@ -34,34 +42,46 @@ void testGeneratingGrid() {
 
 void testRetrievingLocation() {
     std::cout << "---" << std::endl;
-    std::cout << "Test 3 - Retrieving location" << std::endl;
+    std::cout << "Test - Retrieving location" << std::endl;
     Grid grid(5);
     Location firstLocation = grid.getFirstLocation();
     assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
     std::cout << "Success" << std::endl;
 }
 
+void testRetrievingLocationAfterModification() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test - Retrieving location after modification" << std::endl;
+    Grid grid(5);
+    Location firstLocation = grid.getFirstLocation();
+    Entity entity = Entity("test");
+    firstLocation.addEntity(entity);
+    assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
+    assert(firstLocation.isEntityPresent(entity));
+    std::cout << "Success" << std::endl;
+}
+
 void testPlacingEntityInGrid() {
     std::cout << "---" << std::endl;
-    std::cout << "Test 4 - Placing entity in grid" << std::endl;
+    std::cout << "Test - Placing entity in grid" << std::endl;
     Entity entity("Daniel");
     Grid grid(4);
 
-    grid.addEntity(&entity);
+    grid.addEntity(entity);
 
-    assert(grid.isEntityPresent(&entity) == true);
+    assert(grid.isEntityPresent(entity));
     std::cout << "Success" << std::endl;
 }
 
 void testPlacingEntityInEnvironment() {
     std::cout << "---" << std::endl;
-    std::cout << "Test 5 - Placing entity in environment" << std::endl;
+    std::cout << "Test - Placing entity in environment" << std::endl;
     Entity entity("Daniel");
     Environment environment("Earth", 2);
 
-    environment.addEntity(&entity);
+    environment.addEntity(entity);
 
-    assert(environment.isEntityPresent(&entity) == true);
+    assert(environment.isEntityPresent(entity) == true);
     std::cout << "Success" << std::endl;
 }
 
@@ -70,7 +90,8 @@ int main() {
     testPlacingEntityInLocation();
     testGeneratingGrid();
     testRetrievingLocation();
+    testRetrievingLocationAfterModification();
     testPlacingEntityInGrid();
-    // testPlacingEntityInEnvironment();
+    testPlacingEntityInEnvironment();
     return 0;
 }

@@ -17,7 +17,7 @@ namespace envlibcpp {
         return name;
     }
 
-    Grid Environment::getGrid() {
+    Grid& Environment::getGrid() {
         return grid;
     }
 
@@ -25,22 +25,22 @@ namespace envlibcpp {
         name = newName;
     }
 
-    void Environment::addEntity(Entity* entity) {
-        entity->setEnvironmentId(id);
+    void Environment::addEntity(Entity &entity) {
+        entity.setEnvironmentId(id);
         grid.addEntity(entity);
     }
 
-    void Environment::addEntityToLocation(Entity* entity, Location* location) {
-        entity->setEnvironmentId(id);
+    void Environment::addEntityToLocation(Entity &entity, Location &location) {
+        entity.setEnvironmentId(id);
         grid.addEntityToLocation(entity, location);
     }
 
-    void Environment::removeEntity(Entity* entity) {
-        entity->setEnvironmentId(-1);
+    void Environment::removeEntity(Entity &entity) {
+        entity.setEnvironmentId(-1);
         grid.removeEntity(entity);
     }
 
-    bool Environment::isEntityPresent(Entity* entity) {
+    bool Environment::isEntityPresent(Entity &entity) {
         return grid.isEntityPresent(entity);
     }
 
