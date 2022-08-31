@@ -31,11 +31,17 @@ namespace envlibcpp {
     }
     
     void Location::removeEntity(Entity &entity) {
-        for (auto i = entities.begin(); i != entities.end(); i++) {
-            if (i->getId() == entity.getId()) {
-                entities.erase(i);
+        int index = -1;
+        for (int i = 0; i < getNumEntities(); i++) {
+            if (entities[i].getId() == entity.getId()) {
+                index = i;
+                break;
             }
         }
+        if (index != -1) {
+            entities.erase(entities.begin() + index);
+        }
+        entity.setLocationId(-1);
     }
     
     bool Location::isEntityPresent(Entity &entity) {
