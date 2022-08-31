@@ -86,6 +86,7 @@ namespace envlibcpp {
                 location.removeEntity(entity);
             }
         }
+        entity.setGridId(-1);
     }
 
     bool Grid::isEntityPresent(Entity &entity) {
