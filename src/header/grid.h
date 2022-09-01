@@ -29,6 +29,7 @@ namespace envlibcpp {
             void removeEntity(Entity &entity);
             bool isEntityPresent(Entity &entity);
             Location& getLocation(int locationId);
+            Location& getRandomLocation();
         private:
             int id;
             int size;
