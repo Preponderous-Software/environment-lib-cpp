@@ -25,12 +25,12 @@ namespace envlibcpp {
         return entities.size();
     }
     
-    void Location::addEntity(Entity &entity) {
+    void Location::addEntity(Entity& entity) {
         entity.setLocationId(getId());
         entities.push_back(entity);
     }
     
-    void Location::removeEntity(Entity &entity) {
+    void Location::removeEntity(Entity& entity) {
         int index = -1;
         for (int i = 0; i < getNumEntities(); i++) {
             if (entities[i].getId() == entity.getId()) {
@@ -44,7 +44,7 @@ namespace envlibcpp {
         entity.setLocationId(-1);
     }
     
-    bool Location::isEntityPresent(Entity &entity) {
+    bool Location::isEntityPresent(Entity& entity) {
         for (Entity &e : entities) {
             if (e.getId() == entity.getId()) {
                 return true;

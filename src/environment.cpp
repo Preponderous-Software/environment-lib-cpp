@@ -25,22 +25,22 @@ namespace envlibcpp {
         name = newName;
     }
 
-    void Environment::addEntity(Entity &entity) {
+    void Environment::addEntity(Entity& entity) {
         entity.setEnvironmentId(id);
         grid.addEntity(entity);
     }
 
-    void Environment::addEntityToLocation(Entity &entity, Location &location) {
+    void Environment::addEntityToLocation(Entity& entity, Location& location) {
         entity.setEnvironmentId(id);
         grid.addEntityToLocation(entity, location);
     }
 
-    void Environment::removeEntity(Entity &entity) {
+    void Environment::removeEntity(Entity& entity) {
         entity.setEnvironmentId(-1);
         grid.removeEntity(entity);
     }
 
-    bool Environment::isEntityPresent(Entity &entity) {
+    bool Environment::isEntityPresent(Entity& entity) {
         return grid.isEntityPresent(entity);
     }
 
@@ -54,7 +54,7 @@ namespace envlibcpp {
     }
 
     envlibcpp::Entity& Environment::getFirstEntity() {
-        for (envlibcpp::Location &location : getGrid().getLocations()) {
+        for (envlibcpp::Location& location : getGrid().getLocations()) {
             if (location.getNumEntities() > 0) {
                 return location.getEntities()[0];
             }
@@ -63,8 +63,8 @@ namespace envlibcpp {
     }
 
     envlibcpp::Entity& Environment::getEntity(int entityId) {
-        for (envlibcpp::Location &location : getGrid().getLocations()) {
-            for (envlibcpp::Entity &entity : location.getEntities()) {
+        for (envlibcpp::Location& location : getGrid().getLocations()) {
+            for (envlibcpp::Entity& entity : location.getEntities()) {
                 if (entity.getId() == entityId) {
                     return entity;
                 }
