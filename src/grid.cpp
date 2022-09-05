@@ -54,11 +54,11 @@ namespace envlibcpp {
         size = newSize;
     }
 
-    void Grid::addLocation(Location &location) {
+    void Grid::addLocation(Location& location) {
         locations.push_back(location);
     }
 
-    void Grid::removeLocation(Location &location) {
+    void Grid::removeLocation(Location& location) {
         for (auto i = locations.begin(); i != locations.end(); i++) {
             if (i->getId() == location.getId()) {
                 locations.erase(i);
@@ -66,13 +66,13 @@ namespace envlibcpp {
         }
     }
 
-    void Grid::addEntity(Entity &entity) {
+    void Grid::addEntity(Entity& entity) {
         entity.setGridId(id);
-        Location &firstLocation = getRandomLocation();
+        Location& firstLocation = getRandomLocation();
         firstLocation.addEntity(entity);
     }
 
-    void Grid::addEntityToLocation(Entity &entity, Location &location) {
+    void Grid::addEntityToLocation(Entity& entity, Location& location) {
         for (Location &l : locations) {
             if (l.getId() == location.getId()) {
                 location.addEntity(entity);
@@ -80,8 +80,8 @@ namespace envlibcpp {
         }
     }
 
-    void Grid::removeEntity(Entity &entity) {
-        for (Location &location : locations) {
+    void Grid::removeEntity(Entity& entity) {
+        for (Location& location : locations) {
             if (location.isEntityPresent(entity)) {
                 location.removeEntity(entity);
                 entity.setLocationId(-1);
@@ -90,8 +90,8 @@ namespace envlibcpp {
         entity.setGridId(-1);
     }
 
-    bool Grid::isEntityPresent(Entity &entity) {
-        for (Location &location : locations) {
+    bool Grid::isEntityPresent(Entity& entity) {
+        for (Location& location : locations) {
             if (location.isEntityPresent(entity)) {
                 return true;
             }
@@ -100,7 +100,7 @@ namespace envlibcpp {
     }
 
     Location& Grid::getLocation(int locationId) {
-        for (Location &location : locations) {
+        for (Location& location : locations) {
             if (location.getId() == locationId) {
                 return location;
             }
