@@ -52,4 +52,24 @@ namespace envlibcpp {
         std::cout << "=== " << getName() << " ===" << std::endl;
         std::cout << "Num entities: " << getNumEntities() << std::endl;
     }
+
+    envlibcpp::Entity& Environment::getFirstEntity() {
+        for (envlibcpp::Location &location : getGrid().getLocations()) {
+            if (location.getNumEntities() > 0) {
+                return location.getEntities()[0];
+            }
+        }
+        throw new std::exception();
+    }
+
+    envlibcpp::Entity& Environment::getEntity(int entityId) {
+        for (envlibcpp::Location &location : getGrid().getLocations()) {
+            for (envlibcpp::Entity &entity : location.getEntities()) {
+                if (entity.getId() == entityId) {
+                    return entity;
+                }
+            }
+        }
+        throw new std::exception();
+    }
 }

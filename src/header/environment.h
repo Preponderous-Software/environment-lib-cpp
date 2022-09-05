@@ -19,9 +19,11 @@ namespace envlibcpp {
             void addEntity(Entity &entity);
             void addEntityToLocation(Entity &entity, Location &location);
             void removeEntity(Entity &entity);
-            bool isEntityPresent(Entity &rntity);
+            bool isEntityPresent(Entity &entity);
             int getNumEntities();
             void printInfo();
+            envlibcpp::Entity& getFirstEntity();
+            envlibcpp::Entity& getEntity(int entityId);
         private:
             int id;
             std::string name;

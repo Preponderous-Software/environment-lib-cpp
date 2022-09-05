@@ -84,6 +84,7 @@ namespace envlibcpp {
         for (Location &location : locations) {
             if (location.isEntityPresent(entity)) {
                 location.removeEntity(entity);
+                entity.setLocationId(-1);
             }
         }
         entity.setGridId(-1);
