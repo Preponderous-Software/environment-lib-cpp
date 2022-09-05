@@ -9,23 +9,24 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Entity {
         public:
-            Entity(std::string entityName);
+            Entity(int id, std::string entityName);
             int getId();
             std::string getName();
             int getEnvironmentId();
             int getGridId();
-            int getLocationId();
+            std::string getLocationId();
             void setName(std::string newName);
             void setEnvironmentId(int id);
             void setGridId(int id);
-            void setLocationId(int id);
+            void setLocationId(std::string id);
+            void resetLocationId();
             envlibcpp::Entity& getEntity(int entityId);
         private:
             int id;
             std::string name;
             int environmentId;
             int gridId;
-            int locationId;
+            std::string locationId;
     };
 }
 

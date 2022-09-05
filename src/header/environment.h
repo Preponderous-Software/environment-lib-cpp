@@ -11,10 +11,11 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Environment {
         public:
-            Environment(std::string envName, int size);
+            Environment(int id, std::string envName, int size);
+            ~Environment();
             int getId();
             std::string getName();
-            Grid& getGrid();
+            Grid* getGrid();
             void setName(std::string newName);
             void addEntity(Entity& entity);
             void addEntityToLocation(Entity& entity, Location& location);
@@ -27,7 +28,7 @@ namespace envlibcpp {
         private:
             int id;
             std::string name;
-            Grid grid;
+            Grid* grid;
     };
 }
 

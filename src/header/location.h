@@ -12,8 +12,8 @@ namespace envlibcpp {
     // @since August 26th, 2022
     class Location {
         public:
-            Location(int xpos, int ypos);
-            int getId();
+            Location(std::string id, int xpos, int ypos);
+            std::string getId();
             int getX();
             int getY();
             int getNumEntities();
@@ -22,7 +22,7 @@ namespace envlibcpp {
             bool isEntityPresent(Entity& entity);
             std::vector<Entity>& getEntities();
         private:
-            int id;
+            std::string id;
             int x;
             int y;
             std::vector<Entity> entities;

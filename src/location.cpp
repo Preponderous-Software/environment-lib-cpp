@@ -3,13 +3,13 @@
 #include <iostream>
 
 namespace envlibcpp {
-    Location::Location(int xpos, int ypos) {
-        id = rand() % 100 + 1;
+    Location::Location(std::string identifier, int xpos, int ypos) {
+        id = identifier;
         x = xpos;
         y = ypos;
     }
 
-    int Location::getId() {
+    std::string Location::getId() {
         return id;
     }
 
@@ -41,7 +41,7 @@ namespace envlibcpp {
         if (index != -1) {
             entities.erase(entities.begin() + index);
         }
-        entity.setLocationId(-1);
+        entity.resetLocationId();
     }
     
     bool Location::isEntityPresent(Entity& entity) {

@@ -19,8 +19,8 @@ void testTemplate() {
 void testPlacingEntityInLocation() {
     std::cout << "---" << std::endl;
     std::cout << "Test 1 - Placing entity in location" << std::endl;
-    Entity entity("Daniel");
-    Location location(0, 0);
+    Entity entity(0, "Daniel");
+    Location location("my location id", 0, 0);
     location.addEntity(entity);
     assert(location.isEntityPresent(entity) == true);
     assert(entity.getLocationId() == location.getId());
@@ -30,12 +30,12 @@ void testPlacingEntityInLocation() {
 void testRemovingEntityFromLocation() {
     std::cout << "---" << std::endl;
     std::cout << "Test 2 - Removing entity from location" << std::endl;
-    Entity entity("Daniel");
-    Location location(0, 0);
+    Entity entity(0, "Daniel");
+    Location location("location-0-0", 0, 0);
     location.addEntity(entity);
     location.removeEntity(entity);
     assert(!location.isEntityPresent(entity));
-    assert(entity.getLocationId() == -1);
+    assert(entity.getLocationId() == "N/S");
     std::cout << "Success" << std::endl;
 }
 
@@ -43,8 +43,8 @@ void testGeneratingGrid() {
     std::cout << "---" << std::endl;
     std::cout << "Test 3 - Generating grid" << std::endl;
     int size = 4;
-    Environment environment("test environment", 4);
-    int numLocations = environment.getGrid().getLocations().size();
+    Environment environment(0, "test environment", 4);
+    int numLocations = environment.getGrid()->getLocations().size();
     int expectedNumLocations = size*size;
     assert(numLocations == expectedNumLocations);
     std::cout << "Success" << std::endl;
@@ -53,7 +53,7 @@ void testGeneratingGrid() {
 void testRetrievingLocation() {
     std::cout << "---" << std::endl;
     std::cout << "Test 4 - Retrieving location" << std::endl;
-    Grid grid(5);
+    Grid grid(0, 5);
     Location firstLocation = grid.getFirstLocation();
     assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
     std::cout << "Success" << std::endl;
@@ -62,9 +62,9 @@ void testRetrievingLocation() {
 void testRetrievingLocationAfterModification() {
     std::cout << "---" << std::endl;
     std::cout << "Test 5 - Retrieving location after modification" << std::endl;
-    Grid grid(5);
+    Grid grid(0, 5);
     Location firstLocation = grid.getFirstLocation();
-    Entity entity = Entity("test");
+    Entity entity = Entity(0, "test");
     firstLocation = grid.getFirstLocation();
     firstLocation.addEntity(entity);
     assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
@@ -75,8 +75,8 @@ void testRetrievingLocationAfterModification() {
 void testPlacingEntityInGrid() {
     std::cout << "---" << std::endl;
     std::cout << "Test 6 - Placing entity in grid" << std::endl;
-    Entity entity("Daniel");
-    Grid grid(4);
+    Entity entity(0, "Daniel");
+    Grid grid(0, 4);
     grid.addEntity(entity);
     assert(grid.isEntityPresent(entity));
     assert(entity.getGridId() == grid.getId());
@@ -86,8 +86,8 @@ void testPlacingEntityInGrid() {
 void testRemovingEntityFromGrid() {
     std::cout << "---" << std::endl;
     std::cout << "Test 7 - Removing entity from grid" << std::endl;
-    Entity entity("Daniel");
-    Grid grid(4);
+    Entity entity(0, "Daniel");
+    Grid grid(0, 4);
     grid.addEntity(entity);
     grid.removeEntity(entity);
     assert(!grid.isEntityPresent(entity));
@@ -98,8 +98,8 @@ void testRemovingEntityFromGrid() {
 void testPlacingEntityInEnvironment() {
     std::cout << "---" << std::endl;
     std::cout << "Test 8 - Placing entity in environment" << std::endl;
-    Entity entity("Daniel");
-    Environment environment("Earth", 2);
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 2);
     environment.addEntity(entity);
     assert(environment.isEntityPresent(entity));
     assert(entity.getEnvironmentId() == environment.getId());
@@ -109,8 +109,8 @@ void testPlacingEntityInEnvironment() {
 void testRemovingEntityFromEnvironment() {
     std::cout << "---" << std::endl;
     std::cout << "Test 9 - Removing entity from environment" << std::endl;
-    Entity entity("Daniel");
-    Environment environment("Earth", 2);
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 2);
     environment.addEntity(entity);
     environment.removeEntity(entity);
     assert(!environment.isEntityPresent(entity));
@@ -121,10 +121,10 @@ void testRemovingEntityFromEnvironment() {
 void testPlacingMultipleEntities() {
     std::cout << "---" << std::endl;
     std::cout << "Test 10 - Placing multiple entities" << std::endl;
-    Entity entity1("Bob");
-    Entity entity2("Phil");
-    Entity entity3("Clarisse");
-    Environment environment("Earth", 6);
+    Entity entity1(0, "Bob");
+    Entity entity2(1, "Phil");
+    Entity entity3(2, "Clarisse");
+    Environment environment(0, "Earth", 6);
     environment.addEntity(entity1);
     environment.addEntity(entity2);
     environment.addEntity(entity3);

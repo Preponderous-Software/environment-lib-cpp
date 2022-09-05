@@ -4,12 +4,12 @@
 #include <iostream>
 
 namespace envlibcpp {
-    Entity::Entity(std::string entityName) {
-        id = rand() % 100 + 1;
+    Entity::Entity(int identifier, std::string entityName) {
+        id = identifier;
         name = entityName;
         environmentId = -1;
         gridId = -1;
-        locationId = -1;
+        locationId = "N/S";
     }
 
     int Entity::getId() {
@@ -28,7 +28,7 @@ namespace envlibcpp {
         return gridId;
     }
 
-    int Entity::getLocationId() {
+    std::string Entity::getLocationId() {
         return locationId;
     }
 
@@ -44,7 +44,11 @@ namespace envlibcpp {
         gridId = id;
     }
 
-    void Entity::setLocationId(int id) {
+    void Entity::setLocationId(std::string id) {
         locationId = id;
+    }
+
+    void Entity::resetLocationId() {
+        setLocationId("N/S");
     }
 }

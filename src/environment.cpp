@@ -3,10 +3,14 @@
 #include <iostream>
 
 namespace envlibcpp {
-    Environment::Environment(std::string envName, int size) {
-        id = rand() % 100 + 1;
+    Environment::Environment(int identifier, std::string envName, int size) {
+        id = identifier;
         name = envName;
-        grid = Grid(size);
+        grid = new Grid(id, size);
+    }
+
+    Environment::~Environment() {
+        free(grid);
     }
 
     int Environment::getId() {
@@ -17,7 +21,7 @@ namespace envlibcpp {
         return name;
     }
 
-    Grid& Environment::getGrid() {
+    Grid* Environment::getGrid() {
         return grid;
     }
 
@@ -27,25 +31,25 @@ namespace envlibcpp {
 
     void Environment::addEntity(Entity& entity) {
         entity.setEnvironmentId(id);
-        grid.addEntity(entity);
+        grid->addEntity(entity);
     }
 
     void Environment::addEntityToLocation(Entity& entity, Location& location) {
         entity.setEnvironmentId(id);
-        grid.addEntityToLocation(entity, location);
+        grid->addEntityToLocation(entity, location);
     }
 
     void Environment::removeEntity(Entity& entity) {
         entity.setEnvironmentId(-1);
-        grid.removeEntity(entity);
+        grid->removeEntity(entity);
     }
 
     bool Environment::isEntityPresent(Entity& entity) {
-        return grid.isEntityPresent(entity);
+        return grid->isEntityPresent(entity);
     }
 
     int Environment::getNumEntities() {
-        return grid.getNumEntities();
+        return grid->getNumEntities();
     }
     
     void Environment::printInfo() {
@@ -54,7 +58,7 @@ namespace envlibcpp {
     }
 
     envlibcpp::Entity& Environment::getFirstEntity() {
-        for (envlibcpp::Location& location : getGrid().getLocations()) {
+        for (envlibcpp::Location& location : getGrid()->getLocations()) {
             if (location.getNumEntities() > 0) {
                 return location.getEntities()[0];
             }
@@ -63,7 +67,7 @@ namespace envlibcpp {
     }
 
     envlibcpp::Entity& Environment::getEntity(int entityId) {
-        for (envlibcpp::Location& location : getGrid().getLocations()) {
+        for (envlibcpp::Location& location : getGrid()->getLocations()) {
             for (envlibcpp::Entity& entity : location.getEntities()) {
                 if (entity.getId() == entityId) {
                     return entity;

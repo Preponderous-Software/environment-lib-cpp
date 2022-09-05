@@ -3,12 +3,8 @@
 #include <iostream>
 
 namespace envlibcpp {
-    Grid::Grid() {
-        Grid(4);
-    }
-
-    Grid::Grid(int gridSize) {
-        id = rand() % 100 + 1;
+    Grid::Grid(int identifier, int gridSize) {
+        id = identifier;
         size = gridSize;
         generateLocations();
     }
@@ -84,7 +80,7 @@ namespace envlibcpp {
         for (Location& location : locations) {
             if (location.isEntityPresent(entity)) {
                 location.removeEntity(entity);
-                entity.setLocationId(-1);
+                entity.resetLocationId();
             }
         }
         entity.setGridId(-1);
@@ -99,7 +95,7 @@ namespace envlibcpp {
         return false;
     }
 
-    Location& Grid::getLocation(int locationId) {
+    Location& Grid::getLocation(std::string locationId) {
         for (Location& location : locations) {
             if (location.getId() == locationId) {
                 return location;
@@ -116,7 +112,8 @@ namespace envlibcpp {
     void Grid::generateLocations() {
         for (int y = 0; y < getSize(); y++) {
             for (int x = 0; x < getSize(); x++) {
-                Location location(x, y);
+                std::string identifier = "" + std::to_string(getId()) + "-" + std::to_string(x) + "-" + std::to_string(y);
+                Location location(identifier, x, y);
                 locations.push_back(location);
             }
         }
