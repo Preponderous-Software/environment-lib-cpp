@@ -23,8 +23,8 @@ namespace envlibcpp {
             bool isEntityPresent(Entity& entity);
             int getNumEntities();
             void printInfo();
-            envlibcpp::Entity& getFirstEntity();
-            envlibcpp::Entity& getEntity(int entityId);
+            Entity& getFirstEntity();
+            Entity& getEntity(int entityId);
         private:
             int id;
             std::string name;
