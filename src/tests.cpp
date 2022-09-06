@@ -132,6 +132,18 @@ void testPlacingMultipleEntities() {
     std::cout << "Success" << std::endl;
 }
 
+void testResettingEntityLocationId() {
+    std::cout << "---" << std::endl;
+    std::cout << "Test 11 - Resetting entity location id" << std::endl;
+    EntityFactory entityFactory;
+    Human human = entityFactory.createHuman();
+    human.setLocationId("0-0-0");
+    assert(human.getLocationId() == "0-0-0");
+    human.resetLocationId();
+    assert(human.getLocationId() == "N/S");
+    std::cout << "Success" << std::endl;
+}
+
 void seedRandomNumberGenerator() {
     srand (time (NULL));
 }
@@ -151,5 +163,6 @@ int main() {
     testPlacingEntityInEnvironment();
     testRemovingEntityFromEnvironment();
     testPlacingMultipleEntities();
+    testResettingEntityLocationId();
     return 0;
 }
