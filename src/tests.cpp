@@ -135,12 +135,11 @@ void testPlacingMultipleEntities() {
 void testResettingEntityLocationId() {
     std::cout << "---" << std::endl;
     std::cout << "Test 11 - Resetting entity location id" << std::endl;
-    EntityFactory entityFactory;
-    Human human = entityFactory.createHuman();
-    human.setLocationId("0-0-0");
-    assert(human.getLocationId() == "0-0-0");
-    human.resetLocationId();
-    assert(human.getLocationId() == "N/S");
+    Entity entity(0, "Mark");
+    entity.setLocationId("0-0-0");
+    assert(entity.getLocationId() == "0-0-0");
+    entity.resetLocationId();
+    assert(entity.getLocationId() == "N/S");
     std::cout << "Success" << std::endl;
 }
 
