@@ -69,7 +69,8 @@ namespace envlibcpp {
     }
 
     void Grid::addEntityToLocation(Entity& entity, Location& location) {
-        for (Location &l : locations) {
+        entity.setGridId(id);
+        for (Location& l : locations) {
             if (l.getId() == location.getId()) {
                 location.addEntity(entity);
             }
