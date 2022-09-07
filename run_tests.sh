@@ -1,8 +1,8 @@
 # remove executable
-rm ./tests
+rm ./tests_executable
 
 # compile
 make
 
 # run executable
-./tests
+./tests_executable
