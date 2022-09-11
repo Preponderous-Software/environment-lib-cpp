@@ -19,8 +19,8 @@ void testPlacingEntityInLocation() {
     std::cout << "Test 1 - Placing entity in location";
     Entity entity(0, "Daniel");
     Location location("my location id", 0, 0);
-    location.addEntity(entity);
-    assert(location.isEntityPresent(entity) == true);
+    location.addEntity(&entity);
+    assert(location.isEntityPresent(&entity) == true);
     assert(entity.getLocationId() == location.getId());
     std::cout << " --- " << "Success" << std::endl;
 }
@@ -29,9 +29,9 @@ void testRemovingEntityFromLocation() {
     std::cout << "Test 2 - Removing entity from location";
     Entity entity(0, "Daniel");
     Location location("location-0-0", 0, 0);
-    location.addEntity(entity);
-    location.removeEntity(entity);
-    assert(!location.isEntityPresent(entity));
+    location.addEntity(&entity);
+    location.removeEntity(&entity);
+    assert(!location.isEntityPresent(&entity));
     assert(entity.getLocationId() == "N/S");
     std::cout << " --- " << "Success" << std::endl;
 }
@@ -60,9 +60,9 @@ void testRetrievingLocationAfterModification() {
     Location firstLocation = grid.getFirstLocation();
     Entity entity = Entity(0, "test");
     firstLocation = grid.getFirstLocation();
-    firstLocation.addEntity(entity);
+    firstLocation.addEntity(&entity);
     assert(firstLocation.getX() == 0 && firstLocation.getY() == 0);
-    assert(firstLocation.isEntityPresent(entity));
+    assert(firstLocation.isEntityPresent(&entity));
     std::cout << " --- " << "Success" << std::endl;
 }
 

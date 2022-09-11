@@ -65,22 +65,22 @@ namespace envlibcpp {
     void Grid::addEntity(Entity& entity) {
         entity.setGridId(id);
         Location& firstLocation = getRandomLocation();
-        firstLocation.addEntity(entity);
+        firstLocation.addEntity(&entity);
     }
 
     void Grid::addEntityToLocation(Entity& entity, Location& location) {
         entity.setGridId(id);
         for (Location& l : locations) {
             if (l.getId() == location.getId()) {
-                location.addEntity(entity);
+                location.addEntity(&entity);
             }
         }
     }
 
     void Grid::removeEntity(Entity& entity) {
         for (Location& location : locations) {
-            if (location.isEntityPresent(entity)) {
-                location.removeEntity(entity);
+            if (location.isEntityPresent(&entity)) {
+                location.removeEntity(&entity);
                 entity.resetLocationId();
             }
         }
@@ -89,7 +89,7 @@ namespace envlibcpp {
 
     bool Grid::isEntityPresent(Entity& entity) {
         for (Location& location : locations) {
-            if (location.isEntityPresent(entity)) {
+            if (location.isEntityPresent(&entity)) {
                 return true;
             }
         }
