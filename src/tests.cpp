@@ -202,6 +202,76 @@ void testMovingEntityToNewLocationRepeatedly() {
     std::cout << " --- " << "Success" << std::endl;
 }
 
+void testMovingMultipleEntitiesToNewLocations() {
+    std::cout << "Test 17 - Moving multiple entities to new locations";
+
+    std::vector<Entity> entities;
+    Entity entity0(0, "Daniel");
+    entities.push_back(entity0);
+    Entity entity1(1, "Albert");
+    entities.push_back(entity1);
+    Entity entity2(2, "Charlie");
+    entities.push_back(entity2);
+
+    Environment environment(0, "Earth", 8);
+    
+    for (Entity& e : entities) {
+        environment.addEntity(e);
+    }
+
+    for (int i = 0; i < 10; i++) {
+        for (Entity& e : entities) {
+            std::string initialLocationId = e.getLocationId();
+            assert(initialLocationId != "N/S");
+
+            Location* newLocation;
+            do {
+                newLocation = &environment.getGrid()->getRandomLocation();
+            } while(newLocation->getId() == initialLocationId);
+            
+            environment.moveEntityToNewLocation(e.getId(), newLocation->getId());
+            std::string currentLocationId = e.getLocationId();
+            assert(currentLocationId == newLocation->getId());
+        }
+    }
+
+    std::cout << " --- " << "Success" << std::endl;
+}
+
+void testMovingMultipleEntitiesToNewLocationsRepeatedly() {
+    std::cout << "Test 18 - Moving multiple entities to new locations repeatedly";
+
+    std::vector<Entity> entities;
+    Entity entity0(0, "Daniel");
+    entities.push_back(entity0);
+    Entity entity1(1, "Albert");
+    entities.push_back(entity1);
+    Entity entity2(2, "Charlie");
+    entities.push_back(entity2);
+
+    Environment environment(0, "Earth", 8);
+    
+    for (Entity& e : entities) {
+        environment.addEntity(e);
+    }
+
+    for (Entity& e : entities) {
+        std::string initialLocationId = e.getLocationId();
+        assert(initialLocationId != "N/S");
+
+        Location* newLocation;
+        do {
+            newLocation = &environment.getGrid()->getRandomLocation();
+        } while(newLocation->getId() == initialLocationId);
+        
+        environment.moveEntityToNewLocation(e.getId(), newLocation->getId());
+        std::string currentLocationId = e.getLocationId();
+        assert(currentLocationId == newLocation->getId());
+    }
+
+    std::cout << " --- " << "Success" << std::endl;
+}
+
 void seedRandomNumberGenerator() {
     srand (time (NULL));
 }
@@ -227,5 +297,7 @@ int main() {
     testRetrievingLocationById();
     testMovingEntityToNewLocation();
     testMovingEntityToNewLocationRepeatedly();
+    testMovingMultipleEntitiesToNewLocations();
+    testMovingMultipleEntitiesToNewLocationsRepeatedly();
     return 0;
 }
