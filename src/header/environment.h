@@ -26,10 +26,16 @@ namespace envlibcpp {
             Entity& getFirstEntity();
             Entity& getEntity(int entityId);
             void moveEntityToNewLocation(int entityId, std::string locationId);
+            bool moveEntityUp(int entityId);
+            bool moveEntityRight(int entityId);
+            bool moveEntityDown(int entityId);
+            bool moveEntityLeft(int entityId);
         private:
             int id;
             std::string name;
             Grid* grid;
+
+            bool moveEntityInDirection(int entityId, int direction);
     };
 }
 

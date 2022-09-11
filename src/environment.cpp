@@ -84,4 +84,46 @@ namespace envlibcpp {
         removeEntity(entity);
         addEntityToLocation(entity, newLocation);
     }
+
+    bool Environment::moveEntityUp(int entityId) {
+        return moveEntityInDirection(entityId, 0);
+    }
+
+    bool Environment::moveEntityRight(int entityId) {
+        return moveEntityInDirection(entityId, 1);
+    }
+
+    bool Environment::moveEntityDown(int entityId) {
+        return moveEntityInDirection(entityId, 2);
+    }
+
+    bool Environment::moveEntityLeft(int entityId) {
+        return moveEntityInDirection(entityId, 3);
+    }
+
+    bool Environment::moveEntityInDirection(int entityId, int direction) {
+        Entity& entity = getEntity(entityId);
+        Location& currentLocation = getGrid()->getLocation(entity.getLocationId());
+        Location* newLocation;
+        try {
+            if (direction == 0) {
+                newLocation = &getGrid()->getLocationByCoordinates(currentLocation.getX(), currentLocation.getY() - 1);
+            }
+            else if (direction == 1) {
+                newLocation = &getGrid()->getLocationByCoordinates(currentLocation.getX() + 1, currentLocation.getY());
+            }
+            else if (direction == 2) {
+                newLocation = &getGrid()->getLocationByCoordinates(currentLocation.getX(), currentLocation.getY() + 1);
+            }
+            else if (direction == 3) {
+                newLocation = &getGrid()->getLocationByCoordinates(currentLocation.getX() - 1, currentLocation.getY());
+            }
+            removeEntity(entity);
+            addEntityToLocation(entity, *newLocation);
+            return true;
+        } catch(std::exception e) {
+            // no location found
+            return false;
+        }
+    }
 }

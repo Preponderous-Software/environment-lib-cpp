@@ -272,6 +272,114 @@ void testMovingMultipleEntitiesToNewLocationsRepeatedly() {
     std::cout << " --- " << "Success" << std::endl;
 }
 
+void testMovingEntityUp() {
+    std::cout << "Test 19 - Moving entity up";
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 8);
+    environment.addEntity(entity);
+    Entity& retrievedEntity = environment.getEntity(entity.getId());
+    std::string initialLocationId = retrievedEntity.getLocationId();
+    assert(initialLocationId != "N/S");
+    
+    bool success = environment.moveEntityUp(retrievedEntity.getId());
+    std::string currentLocationId = retrievedEntity.getLocationId();
+
+    if (success) {
+        // assert that the entity's location is upwards adjacent to the previous location
+        Location& initialLocation = environment.getGrid()->getLocation(initialLocationId);
+        Location& currentLocation = environment.getGrid()->getLocation(currentLocationId);
+        assert(initialLocation.getX() == currentLocation.getX());
+        assert(initialLocation.getY() - 1 == currentLocation.getY());
+    }
+    else {
+        // assert that the entity's location has not changed
+        assert(currentLocationId == initialLocationId);
+    }
+    
+    std::cout << " --- " << "Success" << std::endl;
+}
+
+void testMovingEntityRight() {
+    std::cout << "Test 20 - Moving entity right";
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 8);
+    environment.addEntity(entity);
+    Entity& retrievedEntity = environment.getEntity(entity.getId());
+    std::string initialLocationId = retrievedEntity.getLocationId();
+    assert(initialLocationId != "N/S");
+    
+    bool success = environment.moveEntityRight(retrievedEntity.getId());
+    std::string currentLocationId = retrievedEntity.getLocationId();
+
+    if (success) {
+        // assert that the entity's location is upwards adjacent to the previous location
+        Location& initialLocation = environment.getGrid()->getLocation(initialLocationId);
+        Location& currentLocation = environment.getGrid()->getLocation(currentLocationId);
+        assert(initialLocation.getX() + 1 == currentLocation.getX());
+        assert(initialLocation.getY() == currentLocation.getY());
+    }
+    else {
+        // assert that the entity's location has not changed
+        assert(currentLocationId == initialLocationId);
+    }
+    
+    std::cout << " --- " << "Success" << std::endl;
+}
+
+void testMovingEntityDown() {
+    std::cout << "Test 21 - Moving entity down";
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 8);
+    environment.addEntity(entity);
+    Entity& retrievedEntity = environment.getEntity(entity.getId());
+    std::string initialLocationId = retrievedEntity.getLocationId();
+    assert(initialLocationId != "N/S");
+    
+    bool success = environment.moveEntityDown(retrievedEntity.getId());
+    std::string currentLocationId = retrievedEntity.getLocationId();
+
+    if (success) {
+        // assert that the entity's location is upwards adjacent to the previous location
+        Location& initialLocation = environment.getGrid()->getLocation(initialLocationId);
+        Location& currentLocation = environment.getGrid()->getLocation(currentLocationId);
+        assert(initialLocation.getX() == currentLocation.getX());
+        assert(initialLocation.getY() + 1 == currentLocation.getY());
+    }
+    else {
+        // assert that the entity's location has not changed
+        assert(currentLocationId == initialLocationId);
+    }
+    
+    std::cout << " --- " << "Success" << std::endl;
+}
+
+void testMovingEntityLeft() {
+    std::cout << "Test 22 - Moving entity left";
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 8);
+    environment.addEntity(entity);
+    Entity& retrievedEntity = environment.getEntity(entity.getId());
+    std::string initialLocationId = retrievedEntity.getLocationId();
+    assert(initialLocationId != "N/S");
+    
+    bool success = environment.moveEntityLeft(retrievedEntity.getId());
+    std::string currentLocationId = retrievedEntity.getLocationId();
+
+    if (success) {
+        // assert that the entity's location is upwards adjacent to the previous location
+        Location& initialLocation = environment.getGrid()->getLocation(initialLocationId);
+        Location& currentLocation = environment.getGrid()->getLocation(currentLocationId);
+        assert(initialLocation.getX() - 1 == currentLocation.getX());
+        assert(initialLocation.getY() == currentLocation.getY());
+    }
+    else {
+        // assert that the entity's location has not changed
+        assert(currentLocationId == initialLocationId);
+    }
+    
+    std::cout << " --- " << "Success" << std::endl;
+}
+
 void seedRandomNumberGenerator() {
     srand (time (NULL));
 }
@@ -299,5 +407,9 @@ int main() {
     testMovingEntityToNewLocationRepeatedly();
     testMovingMultipleEntitiesToNewLocations();
     testMovingMultipleEntitiesToNewLocationsRepeatedly();
+    testMovingEntityUp();
+    testMovingEntityRight();
+    testMovingEntityDown();
+    testMovingEntityLeft();
     return 0;
 }
