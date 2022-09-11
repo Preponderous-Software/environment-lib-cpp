@@ -1,5 +1,6 @@
 #include "header/environment.h"
 
+#include <stdlib.h>
 #include <iostream>
 
 namespace envlibcpp {
@@ -102,7 +103,7 @@ namespace envlibcpp {
     }
 
     bool Environment::moveEntityToRandomAdjacentLocation(int entityId) {
-        int direction = rand() * 4 + 1;
+        int direction = rand() %4 ;
         return moveEntityInDirection(entityId, direction);
     }
 
@@ -123,6 +124,9 @@ namespace envlibcpp {
             else if (direction == 3) {
                 newLocation = &getGrid()->getLocationByCoordinates(currentLocation.getX() - 1, currentLocation.getY());
             }
+            else {
+                return false;
+            }
             removeEntity(entity);
             addEntityToLocation(entity, *newLocation);
             return true;
@@ -130,5 +134,22 @@ namespace envlibcpp {
             // no location found
             return false;
         }
+    }
+
+    void Environment::printConsoleRepresentation() {
+        int index = 0;
+        for (Location& location : getGrid()->getLocations()) {
+            index++;
+            std::string toPrint = " ";
+            if (location.getNumEntities() > 0) {
+                toPrint = "x";
+            }
+            std::cout << "[" << toPrint << "] ";
+            if (index == getGrid()->getSize()) {
+                std::cout << "\n";
+                index = 0;
+            }
+        }
+        std::cout << std::endl;
     }
 }
