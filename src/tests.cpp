@@ -10,9 +10,9 @@
 using namespace envlibcpp;
 
 void testTemplate() {
-    std::cout << "Test 0 - Template" << std::endl;
+    std::cout << "Test 0 - Template";
     assert(true);
-    std::cout << "Success" << std::endl;
+    std::cout << " --- " << "Success" << std::endl;
 }
 
 void testPlacingEntityInLocation() {
@@ -162,6 +162,46 @@ void testRetrievingLocationById() {
     std::cout << " --- " << "Success" << std::endl;
 }
 
+void testMovingEntityToNewLocation() {
+    std::cout << "Test 15 - Moving entity to new location";
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 8);
+    environment.addEntity(entity);
+    std::string initialLocationId = entity.getLocationId();
+    assert(initialLocationId != "N/S");
+
+    Location* newLocation;
+    do {
+        newLocation = &environment.getGrid()->getRandomLocation();
+    } while(newLocation->getId() == initialLocationId);
+    
+    environment.moveEntityToNewLocation(entity.getId(), newLocation->getId());
+    std::string currentLocationId = entity.getLocationId();
+    assert(currentLocationId == newLocation->getId());
+    std::cout << " --- " << "Success" << std::endl;
+}
+
+void testMovingEntityToNewLocationRepeatedly() {
+    std::cout << "Test 16 - Moving entity to new location repeatedly.";
+    Entity entity(0, "Daniel");
+    Environment environment(0, "Earth", 8);
+    environment.addEntity(entity);
+    for (int i = 0; i < 10; i++) {
+        std::string initialLocationId = entity.getLocationId();
+        assert(initialLocationId != "N/S");
+
+        Location* newLocation;
+        do {
+            newLocation = &environment.getGrid()->getRandomLocation();
+        } while(newLocation->getId() == initialLocationId);
+
+        environment.moveEntityToNewLocation(entity.getId(), newLocation->getId());
+        std::string currentLocationId = entity.getLocationId();
+        assert(currentLocationId == newLocation->getId());
+    }
+    std::cout << " --- " << "Success" << std::endl;
+}
+
 void seedRandomNumberGenerator() {
     srand (time (NULL));
 }
@@ -185,5 +225,7 @@ int main() {
     testRetrievingFirstEntity();
     testRetrievingEntityById();
     testRetrievingLocationById();
+    testMovingEntityToNewLocation();
+    testMovingEntityToNewLocationRepeatedly();
     return 0;
 }

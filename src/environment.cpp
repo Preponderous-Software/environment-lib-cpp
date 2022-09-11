@@ -76,4 +76,12 @@ namespace envlibcpp {
         }
         throw new std::exception();
     }
+
+    void Environment::moveEntityToNewLocation(int entityId, std::string locationId) {
+        Entity& entity = getEntity(entityId);
+        Location& currentLocation = getGrid()->getLocation(entity.getLocationId());
+        Location& newLocation = getGrid()->getLocation(locationId);
+        removeEntity(entity);
+        addEntityToLocation(entity, newLocation);
+    }
 }

@@ -25,6 +25,7 @@ namespace envlibcpp {
             void printInfo();
             Entity& getFirstEntity();
             Entity& getEntity(int entityId);
+            void moveEntityToNewLocation(int entityId, std::string locationId);
         private:
             int id;
             std::string name;
