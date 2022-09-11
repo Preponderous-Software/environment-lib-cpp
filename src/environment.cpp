@@ -101,6 +101,11 @@ namespace envlibcpp {
         return moveEntityInDirection(entityId, 3);
     }
 
+    bool Environment::moveEntityToRandomAdjacentLocation(int entityId) {
+        int direction = rand() * 4 + 1;
+        return moveEntityInDirection(entityId, direction);
+    }
+
     bool Environment::moveEntityInDirection(int entityId, int direction) {
         Entity& entity = getEntity(entityId);
         Location& currentLocation = getGrid()->getLocation(entity.getLocationId());

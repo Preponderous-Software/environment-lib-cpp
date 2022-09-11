@@ -30,6 +30,7 @@ namespace envlibcpp {
             bool moveEntityRight(int entityId);
             bool moveEntityDown(int entityId);
             bool moveEntityLeft(int entityId);
+            bool moveEntityToRandomAdjacentLocation(int entityId);
         private:
             int id;
             std::string name;
