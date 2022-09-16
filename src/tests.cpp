@@ -47,11 +47,9 @@ TEST_CASE("generating grid", "[grid]") {
 }
 
 TEST_CASE("retrieving location from grid", "[grid]") {
-    std::cout << "Test 4 - Retrieving location";
     Grid grid(0, 5);
     Location firstLocation = grid.getFirstLocation();
     REQUIRE(firstLocation.getX() == 0 && firstLocation.getY() == 0);
-    std::cout << " --- " << "Success" << std::endl;
 }
 
 TEST_CASE("retrieving location from grid after modification", "[grid]") {
@@ -73,14 +71,12 @@ TEST_CASE("placing entity in grid", "[grid]") {
 }
 
 TEST_CASE("removing entity from grid", "[grid]") {
-    std::cout << "Test 7 - Removing entity from grid";
     Entity entity(0, "Daniel");
     Grid grid(0, 4);
     grid.addEntity(entity);
     grid.removeEntity(entity);
     REQUIRE(!grid.isEntityPresent(entity));
     REQUIRE(entity.getGridId() == -1);
-    std::cout << " --- " << "Success" << std::endl;
 }
 
 TEST_CASE("placing entity in environment", "[environment]") {
@@ -101,7 +97,6 @@ TEST_CASE("removing entity from environment", "[environment]") {
 }
 
 TEST_CASE("placing multiple entities in environment", "[environment]") {
-    std::cout << "Test 10 - Placing multiple entities";
     Entity entity1(0, "Bob");
     Entity entity2(1, "Phil");
     Entity entity3(2, "Clarisse");
@@ -110,7 +105,6 @@ TEST_CASE("placing multiple entities in environment", "[environment]") {
     environment.addEntity(entity2);
     environment.addEntity(entity3);
     REQUIRE(environment.getNumEntities() == 3);
-    std::cout << " --- " << "Success" << std::endl;
 }
 
 TEST_CASE("resetting entity location id", "[entity]") {
@@ -130,13 +124,11 @@ TEST_CASE("retrieving first entity in an environment", "[environment]") {
 }
 
 TEST_CASE("retrieving an entity from an environment by id", "[environment]") {
-    std::cout << "Test 13 - Retrieving an entity from an environment by id";
     Entity entity(57, "Daniel");
     Environment environment(0, "Earth", 5);
     environment.addEntity(entity);
     Entity& retrievedEntity = environment.getEntity(entity.getId());
     REQUIRE(retrievedEntity.getId() == entity.getId());
-    std::cout << " --- " << "Success" << std::endl;
 }
 
 TEST_CASE("retrieving location from a grid by id", "[grid]") {
