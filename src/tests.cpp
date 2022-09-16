@@ -8,6 +8,8 @@
 #include <iostream>
 #include <assert.h>
 
+#include <catch2/catch_template_test_macros.hpp>
+
 #include "header/entity.h"
 #include "header/environment.h"
 #include "header/location.h"
@@ -15,9 +17,9 @@
 
 using namespace envlibcpp;
 
-void testTemplate() {
+TEST_CASE("name", "[tag]") {
     std::cout << "Test 0 - Template";
-    assert(true);
+    REQUIRE(true);
     std::cout << " --- " << "Success" << std::endl;
 }
 
