@@ -75,7 +75,15 @@ namespace envlibcpp {
                 }
             }
         }
-        throw new std::exception();
+
+        // prepare list of entity ids
+        std::string listOfEntityIds = "";
+        for (Location& location : getGrid()->getLocations()) {
+            for (Entity* entity : location.getEntities()) {
+                listOfEntityIds += std::to_string(entity->getId()) + ", ";
+            }
+        }
+        throw std::invalid_argument("Entity with id '" + std::to_string(entityId) + "' not found in environment '" + getName() + "' (found: " + listOfEntityIds + ")");
     }
 
     void Environment::moveEntityToNewLocation(int entityId, std::string locationId) {
