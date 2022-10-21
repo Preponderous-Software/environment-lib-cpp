@@ -21,12 +21,13 @@ namespace envlibcpp {
             void setLocationId(std::string id);
             void resetLocationId();
             Entity& getEntity(int entityId);
+            void setId(int id);
         private:
-            int id;
-            std::string name;
-            int environmentId;
-            int gridId;
-            std::string locationId;
+            int id = -1;
+            std::string name = "";
+            int environmentId = -1;
+            int gridId = -1;
+            std::string locationId = "";
     };
 }
 

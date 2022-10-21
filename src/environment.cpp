@@ -64,7 +64,7 @@ namespace envlibcpp {
                 return *location.getEntities()[0];
             }
         }
-        throw new std::exception();
+        throw new std::runtime_error("No entities present in environment");
     }
 
     Entity& Environment::getEntity(int entityId) {
@@ -83,12 +83,11 @@ namespace envlibcpp {
                 listOfEntityIds += std::to_string(entity->getId()) + ", ";
             }
         }
-        throw std::invalid_argument("Entity with id '" + std::to_string(entityId) + "' not found in environment '" + getName() + "' (found: " + listOfEntityIds + ")");
+        throw new std::runtime_error("Entity with id '" + std::to_string(entityId) + "' not found in environment '" + getName() + "' (found: " + listOfEntityIds + ")");
     }
 
     void Environment::moveEntityToNewLocation(int entityId, std::string locationId) {
         Entity& entity = getEntity(entityId);
-        Location& currentLocation = getGrid()->getLocation(entity.getLocationId());
         Location& newLocation = getGrid()->getLocation(locationId);
         removeEntity(entity);
         addEntityToLocation(entity, newLocation);
@@ -133,12 +132,13 @@ namespace envlibcpp {
                 newLocation = &getGrid()->getLocationByCoordinates(currentLocation.getX() - 1, currentLocation.getY());
             }
             else {
+                std::cout << "Invalid direction: " << direction << std::endl;
                 return false;
             }
             removeEntity(entity);
             addEntityToLocation(entity, *newLocation);
             return true;
-        } catch(std::exception e) {
+        } catch(std::runtime_error* e) {
             // no location found
             return false;
         }

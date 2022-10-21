@@ -51,4 +51,8 @@ namespace envlibcpp {
     void Entity::resetLocationId() {
         setLocationId("N/S");
     }
+
+    void Entity::setId(int identifier) {
+        id = identifier;
+    }
 }
