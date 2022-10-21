@@ -31,8 +31,8 @@ namespace envlibcpp {
             Location& getLocation(std::string locationId);
             Location& getRandomLocation();
         private:
-            int id;
-            int size;
+            int id = -1;
+            int size = -1;
             std::vector<Location> locations;
 
             void generateLocations();

@@ -21,7 +21,7 @@ namespace envlibcpp {
         return y;
     }
     
-    int Location::getNumEntities() {
+    size_t Location::getNumEntities() {
         return entities.size();
     }
     
@@ -32,7 +32,7 @@ namespace envlibcpp {
     
     void Location::removeEntity(Entity* entity) {
         int index = -1;
-        for (int i = 0; i < getNumEntities(); i++) {
+        for (size_t i = 0; i < getNumEntities(); i++) {
             if (entities[i]->getId() == entity->getId()) {
                 index = i;
                 break;

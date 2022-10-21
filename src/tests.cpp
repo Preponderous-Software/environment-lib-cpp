@@ -192,7 +192,7 @@ void testMovingEntityToNewLocationRepeatedly() {
     Entity entity(0, "Daniel");
     Environment environment(0, "Earth", 8);
     environment.addEntity(entity);
-    for (int i = 0; i < 10; i++) {
+    for (size_t i = 0; i < 10; i++) {
         std::string initialLocationId = entity.getLocationId();
         assert(initialLocationId != "N/S");
 
@@ -225,7 +225,7 @@ void testMovingMultipleEntitiesToNewLocations() {
         environment.addEntity(e);
     }
 
-    for (int i = 0; i < 10; i++) {
+    for (size_t i = 0; i < 10; i++) {
         for (Entity& e : entities) {
             std::string initialLocationId = e.getLocationId();
             assert(initialLocationId != "N/S");
@@ -421,7 +421,7 @@ void testMovingEntityToRandomAdjacentLocationRepeatedly() {
     Environment environment(0, "Earth", 8);
     environment.addEntity(entity);
     Entity& retrievedEntity = environment.getEntity(entity.getId());
-    for (int i = 0; i < 10; i++) {
+    for (size_t i = 0; i < 10; i++) {
         std::string initialLocationId = retrievedEntity.getLocationId();
         assert(initialLocationId != "N/S");
         
@@ -491,7 +491,7 @@ void testMovingMultipleEntitiesToRandomAdjacentLocationsRepeatedly() {
     bool debug = false;
     std::cout << "Test 26 - Moving multiple entities to random adjacent locations repeatedly";
     std::vector<Entity> entities;
-    for (int i = 0; i < 10; i++) {
+    for (size_t i = 0; i < 10; i++) {
         Entity entity(i, "test");
         entities.push_back(entity);
     }
@@ -499,7 +499,7 @@ void testMovingMultipleEntitiesToRandomAdjacentLocationsRepeatedly() {
     for (Entity& entity : entities) {
         environment.addEntity(entity);
     }
-    for (int i = 0; i < 25; i++) {
+    for (size_t i = 0; i < 25; i++) {
         if (debug) {
             environment.printConsoleRepresentation();
             sleep(1);
