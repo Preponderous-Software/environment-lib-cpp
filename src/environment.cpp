@@ -138,7 +138,7 @@ namespace envlibcpp {
             removeEntity(entity);
             addEntityToLocation(entity, *newLocation);
             return true;
-        } catch(std::runtime_error* e) {
+        } catch(const std::runtime_error* e) {
             // no location found
             return false;
         }
